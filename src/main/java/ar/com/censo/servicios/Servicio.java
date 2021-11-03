@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Servicio {
-    static public List<Persona> personas = new ArrayList<Persona>();
+    private List<Persona> personas = new ArrayList<Persona>();
 
     //Metodos agregar
     public String agregarPersona(Persona persona){
-        if((persona.getNombre() == null && persona.getApellido() == null &&
+        if(!(persona.getNombre() == null && persona.getApellido() == null &&
                 persona.getNacimiento() == null && persona.getEdad() == null)) {
-            Servicio.personas.add(persona);
+            personas.add(persona);
             return "Persona creada";
 
         }
@@ -39,4 +39,33 @@ public class Servicio {
         }
 
     }
+
+    //Mostrar Datos
+    public Persona getPersona(Integer id){
+        for(Persona a : personas){
+            if(a.getId() == id) return a;
+        }
+        return null;
+    }
+
+    public List<Persona> getPersonas(){
+        return  this.personas;
+    }
+
+    //funcion decada: devuelve los dos ultimos digitos de la fecha de nacimiento.
+
+    public Integer decada(Integer anio){
+        if(anio<2000){
+
+            anio = anio - 1900;
+            return anio;
+
+        }else{
+
+            anio = anio - 2000;
+            return anio;
+
+        }
+    }
+
 }

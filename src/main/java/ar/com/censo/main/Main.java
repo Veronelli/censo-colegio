@@ -2,46 +2,54 @@ package ar.com.censo.main;
 
 import ar.com.censo.dominio.Persona;
 import ar.com.censo.servicios.Servicio;
-import static ar.com.censo.servicios.Servicio.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Comparator;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String arg[]){
+        Scanner console= new Scanner(System.in);
         Servicio servicio = new Servicio();
+        int opcion = -1;
+        Integer id;
 
-        var persona = new Persona();
-        var persona2 = new Persona();
-        var persona3 = new Persona();
+        while(opcion != 0){
+            System.out.println("Seleccione una opcion\n1.Agregar\n2.Eliminar\n3.Buscar\n4.Mostrar lista\n0.Salir\n->");
+            opcion = console.nextInt();
+            switch (opcion){
+                case 1:
+                    System.out.println("Ingrese el nombre de la persona:");
+                    String nombre = console.next();
+                    System.out.println("Ingrese el apellido de la persona:");
+                    String apellido = console.next();
+                    System.out.println("Ingrese la edad de la persona:");
+                    Integer edad = console.nextInt();
+                    System.out.println("Ingrese el año de nacimiento de la persona:");
+                    Integer nacimiento = console.nextInt();
 
-        System.out.println(persona.toString());
-        System.out.println(persona2.toString());
-        System.out.println(persona3.toString());
+                    servicio.agregarPersona(nombre,apellido,nacimiento,edad);
+                    break;
+                case 2:
+                    System.out.println("Ingrese el ID de la persona:");
+                    id = console.nextInt();
+                    System.out.println(servicio.eliminarPersona(id));
+                    break;
+                case 3:
+                    System.out.println("Ingrese el ID de la persona:");
+                    id = console.nextInt();
+                    System.out.println(servicio.getPersona(id));
 
-        servicio.agregarPersona(persona);
-        servicio.agregarPersona(persona3);
-        servicio.agregarPersona(persona2);
+                    break;
+                case 4:
+                    servicio.getPersonas().stream().sorted(Comparator.comparing(Persona::getId)).forEach(System.out::println);
+                    break;
 
-        System.out.println(servicio.eliminarPersona(2));
-        System.out.println(servicio.eliminarPersona(1));
-        System.out.println(servicio.eliminarPersona(7));
-        System.out.println(personas);
+                default:
 
-/*        List<String> nombres = new ArrayList<>();
+            }
 
-        Persona persona = new Persona();
-        Persona persona1 = new Persona("facundo");
+        }
 
-        persona.setApellido("perez");
-
-        nombres.add("Facundo");
-        nombres.add("Maxi");
-        nombres.add("Fausto");
-        System.out.println(nombres);
-        System.out.println(nombres.size());
-        System.out.println(nombres.get(1));
-*/
     }
 }
