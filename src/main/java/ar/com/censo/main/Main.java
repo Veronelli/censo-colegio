@@ -13,7 +13,13 @@ public class Main {
         Servicio servicio = new Servicio();
         int opcion = -1;
         Integer id;
+        try{
+          System.out.println("DEV Arg" + arg[0]);
 
+        }catch(ArrayIndexOutOfBoundsException e){
+          System.out.println("PROD");
+
+        }
         while(opcion != 0){
             System.out.println("Seleccione una opcion\n1.Agregar\n2.Eliminar\n3.Buscar\n4.Mostrar lista\n0.Salir\n->");
             opcion = console.nextInt();
