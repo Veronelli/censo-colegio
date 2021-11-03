@@ -1,0 +1,2 @@
+language = "java10"
+run = "mvn exec:java -Dexec.mainClass=ar.com.censo.main.Main"
