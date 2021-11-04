@@ -68,4 +68,24 @@ public class Servicio {
         }
     }
 
+    public String nombreCompleto(String nombre, String apellido){
+
+        return nombre + " " + apellido;
+
+    }
+
+    public boolean esMayor(Integer edad){
+
+        if(edad>=18){
+
+          return true;
+
+        }else{
+
+          return false;
+
+        }
+
+    }
+
 }
