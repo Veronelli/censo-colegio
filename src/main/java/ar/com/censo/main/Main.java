@@ -15,6 +15,15 @@ public class Main {
         Integer id;
         try{
           System.out.println("DEV Arg" + arg[0]);
+          String aux = "--dev";
+            System.out.println("AA1A");
+          if(arg[0].equals(aux)){
+            servicio.agregarPersona("Facu","Vero",12,1907);
+            servicio.agregarPersona("Fausto","Gill",13,1940);
+            servicio.agregarPersona("Mateo","Sanchez",11,2003);
+            servicio.agregarPersona("Leon","Martinez",15,1976);
+
+          }
 
         }catch(ArrayIndexOutOfBoundsException e){
           System.out.println("PROD");
