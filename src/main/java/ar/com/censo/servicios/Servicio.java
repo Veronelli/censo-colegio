@@ -88,4 +88,12 @@ public class Servicio {
 
     }
 
+    public Integer cantidadMayores(){
+      int aux = 0;
+      for(Persona a : personas){
+            if(a.getEdad() > 18) aux = aux + 1;
+        }
+      return aux;
+    }
+
 }

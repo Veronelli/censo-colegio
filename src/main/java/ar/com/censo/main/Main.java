@@ -18,10 +18,10 @@ public class Main {
           String aux = "--dev";
             System.out.println("AA1A");
           if(arg[0].equals(aux)){
-            servicio.agregarPersona("Facu","Vero",12,1907);
-            servicio.agregarPersona("Fausto","Gill",13,1940);
-            servicio.agregarPersona("Mateo","Sanchez",11,2003);
-            servicio.agregarPersona("Leon","Martinez",15,1976);
+            servicio.agregarPersona("Facu","Vero",20,2002);
+            servicio.agregarPersona("Fausto","Gill",10,1934);
+            servicio.agregarPersona("Mateo","Sanchez",53,1983);
+            servicio.agregarPersona("Leon","Martinez",35,1968);
 
           }
 
@@ -59,6 +59,10 @@ public class Main {
                 case 4:
                     servicio.getPersonas().stream().sorted(Comparator.comparing(Persona::getId)).forEach(System.out::println);
                     break;
+
+                case 5:
+                  System.out.println(servicio.cantidadMayores());
+                  break;
 
                 default:
 
