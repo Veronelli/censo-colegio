@@ -35,15 +35,56 @@ public class Main {
                         System.out.println("=========================================================");
             switch (opcion){
                 case 1:
-                    System.out.println("Ingrese el nombre de la persona:");
+                    System.out.println("Ingrese el nombre de la persona (Entre 1 y 10 caracteres):");
                     String nombre = console.next();
+                    do{
+                      
+                      if(nombre.length()>10 || nombre.length()<1){
+
+                        System.out.println("Ingrese un nombre válido (Entre 1 y 10 caracteres)");
+
+                        nombre = console.next();
+
+                      }
+                    }while (nombre.length()>10 || nombre.length()<1);
+                    
                     System.out.println("Ingrese el apellido de la persona:");
                     String apellido = console.next();
-                    System.out.println("Ingrese la edad de la persona:");
-                    Integer edad = console.nextInt();
-                    System.out.println("Ingrese el año de nacimiento de la persona:");
-                    Integer nacimiento = console.nextInt();
 
+                    do{
+                      
+                      if(apellido.length()>10 || apellido.length()<1){
+
+                        System.out.println("Ingrese un apellido válido (Entre 1 y 10 caracteres)");
+
+                        apellido = console.next();
+
+                      }
+                    }while (apellido.length()>10 || apellido.length()<1);
+                    System.out.println("Ingrese la edad de la persona (Entre 0 y 120 años):");
+                    Integer edad = console.nextInt();
+                    do{
+
+                      if(edad<0 || edad > 120){
+
+                        System.out.println("Ingrese una edad válida(Entre 0 y 120 años)");
+                        edad = console.nextInt();
+                      }
+                    }while(edad<0 || edad > 120);
+
+                    System.out.println("Ingrese el año de nacimiento de la persona: (Entre 1900 y 2020)");
+
+                    Integer nacimiento = console.nextInt();
+                    do{
+
+                      if(nacimiento < 1900 || nacimiento > 2020){
+
+                        System.out.println("Ingrese un año válido (Entre 1900 y 2020)");
+                        nacimiento = console.nextInt();
+
+                      }
+
+                    }while(nacimiento < 1900 || nacimiento > 2020);
                     servicio.agregarPersona(nombre,apellido,edad,nacimiento);
                     break;
                 case 2:
