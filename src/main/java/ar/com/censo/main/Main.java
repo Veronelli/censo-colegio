@@ -34,7 +34,7 @@ public class Main {
             opcion = console.nextInt();
                         System.out.println("=========================================================");
             switch (opcion){
-                case 1:
+                 case 1:
                     System.out.println("Ingrese el nombre de la persona (Entre 1 y 10 caracteres):");
                     String nombre = console.next();
                     do{
