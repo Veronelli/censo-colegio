@@ -90,7 +90,6 @@ public class Servicio {
 
     public Integer cantidadMayores(){
       int aux = 0;
-      System.out.println("AAA");
       for(Persona a : personas){
             if(a.getEdad() > 18) aux = aux + 1;
         }

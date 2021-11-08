@@ -16,7 +16,6 @@ public class Main {
         try{
           System.out.println("DEV Arg" + arg[0]);
           String aux = "--dev";
-            System.out.println("AA1A");
           if(arg[0].equals(aux)){
             servicio.agregarPersona("Facu","Vero",20,2002);
             servicio.agregarPersona("Fausto","Gill",10,1934);
@@ -57,7 +56,13 @@ public class Main {
                     id = console.nextInt();
                         System.out.println("=========================================================");
                 System.out.println("ID    -     Nombre Completo     -     Edad     -      Decada    -     Mayor");
-                    imprimirPersona(servicio, servicio.getPersona(id));
+                    try{
+                      Persona persona = servicio.getPersona(id);
+                    imprimirPersona(servicio, persona);
+
+                    }catch(NullPointerException e){
+                        System.out.println("No se encontró ninguna persona");
+                    }
 
                     break;
                case 4:
@@ -66,16 +71,11 @@ public class Main {
                 System.out.println("ID    -     Nombre Completo     -     Edad     -      Decada    -     Mayor");
                     servicio.getPersonas().stream().sorted(Comparator.comparing(Persona::getId)).forEach(
                       persona->{
-                        Main.imprimirPersona(servicio,persona);
-                        
+                        Main.imprimirPersona(servicio,persona);                       
 
                       }
                     );
                     break;
-
-                case 5:
-                  System.out.println(servicio.cantidadMayores());
-                  break;
 
                 default:
 
