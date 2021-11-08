@@ -20,8 +20,8 @@ public class Servicio {
 
     }
 
-    public String agregarPersona(String nombre,String apellido, int nacimiento, int edad ){
-        return this.agregarPersona(new Persona(nombre,apellido,nacimiento,edad));
+    public String agregarPersona(String nombre, String apellido, Integer edad, Integer nacimiento ){
+        return this.agregarPersona(new Persona(nombre,apellido,edad,nacimiento));
 
     }
 
@@ -90,6 +90,7 @@ public class Servicio {
 
     public Integer cantidadMayores(){
       int aux = 0;
+      System.out.println("AAA");
       for(Persona a : personas){
             if(a.getEdad() > 18) aux = aux + 1;
         }

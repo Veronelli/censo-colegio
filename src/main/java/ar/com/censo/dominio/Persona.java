@@ -8,7 +8,7 @@ public class Persona {
     private Integer nacimiento;
     private Integer edad;
 
-    public Persona(String nombre, String apellido, Integer nacimiento, Integer edad) {
+    public Persona(String nombre, String apellido, Integer edad, Integer nacimiento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.nacimiento = nacimiento;

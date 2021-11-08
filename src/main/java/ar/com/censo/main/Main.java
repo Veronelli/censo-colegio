@@ -30,8 +30,10 @@ public class Main {
 
         }
         while(opcion != 0){
+                        System.out.println("=========================================================");
             System.out.println("Seleccione una opcion\n1.Agregar\n2.Eliminar\n3.Buscar\n4.Mostrar lista\n0.Salir\n->");
             opcion = console.nextInt();
+                        System.out.println("=========================================================");
             switch (opcion){
                 case 1:
                     System.out.println("Ingrese el nombre de la persona:");
@@ -43,7 +45,7 @@ public class Main {
                     System.out.println("Ingrese el año de nacimiento de la persona:");
                     Integer nacimiento = console.nextInt();
 
-                    servicio.agregarPersona(nombre,apellido,nacimiento,edad);
+                    servicio.agregarPersona(nombre,apellido,edad,nacimiento);
                     break;
                 case 2:
                     System.out.println("Ingrese el ID de la persona:");
@@ -53,11 +55,22 @@ public class Main {
                 case 3:
                     System.out.println("Ingrese el ID de la persona:");
                     id = console.nextInt();
-                    System.out.println(servicio.getPersona(id));
+                        System.out.println("=========================================================");
+                System.out.println("ID    -     Nombre Completo     -     Edad     -      Decada    -     Mayor");
+                    imprimirPersona(servicio, servicio.getPersona(id));
 
                     break;
-                case 4:
-                    servicio.getPersonas().stream().sorted(Comparator.comparing(Persona::getId)).forEach(System.out::println);
+               case 4:
+                        System.out.println("=========================================================");
+               System.out.println("Mayores de edad: " + servicio.cantidadMayores());
+                System.out.println("ID    -     Nombre Completo     -     Edad     -      Decada    -     Mayor");
+                    servicio.getPersonas().stream().sorted(Comparator.comparing(Persona::getId)).forEach(
+                      persona->{
+                        Main.imprimirPersona(servicio,persona);
+                        
+
+                      }
+                    );
                     break;
 
                 case 5:
@@ -70,5 +83,14 @@ public class Main {
 
         }
 
-    }
+    
+}
+public static void imprimirPersona(Servicio servicio,Persona persona){
+  Integer _decada = servicio.decada(persona.getNacimiento());
+                        String _nombreCompleto = servicio.nombreCompleto(persona.getNombre(),persona.getApellido());
+                        String esMayor = (servicio.esMayor(persona.getEdad())) ? "Si" : "No";
+
+                        System.out.println(persona.getId()+"    -       " + _nombreCompleto + "         -     " + persona.getEdad() +"      -      " + _decada + "      -      " + esMayor);
+
+}
 }
