@@ -5,6 +5,7 @@ import ar.com.censo.servicios.Servicio;
 
 import java.util.Comparator;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Main {
 
@@ -29,10 +30,7 @@ public class Main {
 
         }
         while(opcion != 0){
-                        System.out.println("=========================================================");
-            System.out.println("Seleccione una opcion\n1.Agregar\n2.Eliminar\n3.Buscar\n4.Mostrar lista\n0.Salir\n->");
-            opcion = console.nextInt();
-                        System.out.println("=========================================================");
+            opcion = MostrarOpciones(opcion); 
             switch (opcion){
                  case 1:
                     System.out.println("Ingrese el nombre de la persona (Entre 1 y 10 caracteres):");
@@ -123,7 +121,7 @@ public class Main {
             }
 
         }
-
+    
     
 }
 public static void imprimirPersona(Servicio servicio,Persona persona){
@@ -134,4 +132,13 @@ public static void imprimirPersona(Servicio servicio,Persona persona){
                         System.out.println(persona.getId()+"    -       " + _nombreCompleto + "         -     " + persona.getEdad() +"      -      " + _decada + "      -      " + esMayor);
 
 }
+public static int MostrarOpciones(int opcion){
+      opcion = JOptionPane.showOptionDialog( null,"Seleccione una opcion",
+        "Selector de opciones",JOptionPane.YES_NO_CANCEL_OPTION,
+        JOptionPane.QUESTION_MESSAGE,null,// null para icono por defecto.
+        new Object[] { "Agregar", "Eliminar", "Buscar", "Mostrar Lista"},"opcion 1");
+
+        return opcion += 1;
+    }
+
 }
