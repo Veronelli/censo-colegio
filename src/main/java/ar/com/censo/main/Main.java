@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class Main {
 
     public static void main(String arg[]){
-        Scanner console= new Scanner(System.in);
+        Scanner console = new Scanner(System.in);
         Servicio servicio = new Servicio();
         int opcion = -1;
         Integer id;
@@ -33,52 +33,54 @@ public class Main {
             opcion = MostrarOpciones(opcion); 
             switch (opcion){
                  case 1:
-                    System.out.println("Ingrese el nombre de la persona (Entre 1 y 10 caracteres):");
-                    String nombre = console.next();
+                    
+                    
+                    String nombre = JOptionPane.showInputDialog("Ingrese el nombre de la persona (Entre 1 y 10 caracteres):");
                     do{
                       
                       if(nombre.length()>10 || nombre.length()<1){
 
-                        System.out.println("Ingrese un nombre válido (Entre 1 y 10 caracteres)");
-
-                        nombre = console.next();
+                        nombre = JOptionPane.showInputDialog("Ingrese un nombre válido (Entre 1 y 10 caracteres)");
 
                       }
                     }while (nombre.length()>10 || nombre.length()<1);
                     
-                    System.out.println("Ingrese el apellido de la persona:");
-                    String apellido = console.next();
+
+                    String apellido = JOptionPane.showInputDialog("Ingrese el apellido de la persona:");
+                    
 
                     do{
                       
                       if(apellido.length()>10 || apellido.length()<1){
 
-                        System.out.println("Ingrese un apellido válido (Entre 1 y 10 caracteres)");
-
-                        apellido = console.next();
+                        
+                        apellido = JOptionPane.showInputDialog("Ingrese un apellido válido (Entre 1 y 10 caracteres)");
 
                       }
                     }while (apellido.length()>10 || apellido.length()<1);
-                    System.out.println("Ingrese la edad de la persona (Entre 0 y 120 años):");
-                    Integer edad = console.nextInt();
+                    
+                    Integer edad=Integer.parseInt(JOptionPane.showInputDialog("Ingrese la edad de la persona (Entre 0 y 120 años):"));
+
+
                     do{
 
                       if(edad<0 || edad > 120){
 
-                        System.out.println("Ingrese una edad válida(Entre 0 y 120 años)");
-                        edad = console.nextInt();
+                        
+                        edad=Integer.parseInt(JOptionPane.showInputDialog("Ingrese una edad válida(Entre 0 y 120 años)"));
                       }
                     }while(edad<0 || edad > 120);
 
-                    System.out.println("Ingrese el año de nacimiento de la persona: (Entre 1900 y 2020)");
+                    
+                    
+                    Integer nacimiento=Integer.parseInt(JOptionPane.showInputDialog("Ingrese el año de nacimiento de la persona: (Entre 1900 y 2020)"));
 
-                    Integer nacimiento = console.nextInt();
                     do{
 
                       if(nacimiento < 1900 || nacimiento > 2020){
 
-                        System.out.println("Ingrese un año válido (Entre 1900 y 2020)");
-                        nacimiento = console.nextInt();
+                        
+                        nacimiento = Integer.parseInt(JOptionPane.showInputDialog("Ingrese un año válido (Entre 1900 y 2020)"));
 
                       }
 
