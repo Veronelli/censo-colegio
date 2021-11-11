@@ -1,9 +1,8 @@
 package ar.com.censo.main;
 
 import ar.com.censo.dominio.Persona;
+import javax.swing.*;
 import ar.com.censo.servicios.Servicio;
-
-import java.util.Comparator;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
@@ -107,15 +106,26 @@ public class Main {
 
                     break;
                case 4:
-                        System.out.println("=========================================================");
-               System.out.println("Mayores de edad: " + servicio.cantidadMayores());
-                System.out.println("ID    -     Nombre Completo     -     Edad     -      Decada    -     Mayor");
-                    servicio.getPersonas().stream().sorted(Comparator.comparing(Persona::getId)).forEach(
-                      persona->{
-                        Main.imprimirPersona(servicio,persona);                       
+               if(servicio.getPersonas().size()>0){
+                Object [][] rows = new Object [servicio.getPersonas().size()][5];
+                Object[] cols = {"Id","Nombre","Apellido","edad","nacimiento"};
+                
 
-                      }
-                    );
+                for(int i = 0; i < servicio.getPersonas().size(); i++){
+                    int e = i;
+                System.out.println(i);
+                rows[i][0] = servicio.getPersonas().get(e).getId();
+                rows[i][1] = servicio.getPersonas().get(e).getNombre();
+                rows[i][2] = servicio.getPersonas().get(e).getApellido();
+                rows[i][3] = servicio.getPersonas().get(e).getEdad();
+                rows[i][4] = servicio.getPersonas().get(e).getNacimiento();
+                }
+                JTable table = new JTable(rows,cols);
+                JOptionPane.showMessageDialog(null, new JScrollPane(table));
+               }else{
+                 JOptionPane.showMessageDialog(null, "No hay personas registradas",
+      "Hey!", JOptionPane.ERROR_MESSAGE);
+               }
                     break;
 
                 default:
