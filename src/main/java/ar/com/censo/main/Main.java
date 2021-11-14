@@ -87,21 +87,19 @@ public class Main {
                     servicio.agregarPersona(nombre,apellido,edad,nacimiento);
                     break;
                 case 2:
-                    System.out.println("Ingrese el ID de la persona:");
-                    id = console.nextInt();
-                    System.out.println(servicio.eliminarPersona(id));
+                    id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID de la persona:"));
+                    JOptionPane.showMessageDialog(null,servicio.eliminarPersona(id));
                     break;
                 case 3:
-                    System.out.println("Ingrese el ID de la persona:");
-                    id = console.nextInt();
-                        System.out.println("=========================================================");
-                System.out.println("ID    -     Nombre Completo     -     Edad     -      Decada    -     Mayor");
+                    id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID de la persona:"));
+                        
                     try{
                       Persona persona = servicio.getPersona(id);
-                    imprimirPersona(servicio, persona);
+                      JOptionPane.showMessageDialog(null,imprimirPersona(servicio, persona));
+                    
 
                     }catch(NullPointerException e){
-                        System.out.println("No se encontró ninguna persona");
+                        JOptionPane.showMessageDialog(null,"No se encontro el usuario");
                     }
 
                     break;
@@ -136,12 +134,12 @@ public class Main {
     
     
 }
-public static void imprimirPersona(Servicio servicio,Persona persona){
+public static String imprimirPersona(Servicio servicio,Persona persona){
   Integer _decada = servicio.decada(persona.getNacimiento());
                         String _nombreCompleto = servicio.nombreCompleto(persona.getNombre(),persona.getApellido());
                         String esMayor = (servicio.esMayor(persona.getEdad())) ? "Si" : "No";
-
-                        System.out.println(persona.getId()+"    -       " + _nombreCompleto + "         -     " + persona.getEdad() +"      -      " + _decada + "      -      " + esMayor);
+                        
+                        return "ID: "+ persona.getId()+"|" +"Nombre Completo:  "+ _nombreCompleto + "|"+"Edad:  " + persona.getEdad() +"|"+"Decada:  " + _decada + "|" +"Mayor:  "+ esMayor;
 
 }
 public static int MostrarOpciones(int opcion){
