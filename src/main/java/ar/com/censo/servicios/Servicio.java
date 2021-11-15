@@ -28,14 +28,19 @@ public class Servicio {
     //Eliminar metodo
     public String eliminarPersona(Integer id){
         try {
-            personas.get(id).isEmpty();
-            Persona persona = personas.get(id);
+            Persona persona = getPersona(id);
+            System.out.println(persona.toString());
             personas.remove(persona);
 
-            return "Usuario Eliminado";
+            if(persona == null){
+              return "No se encontró la persona";
+            }
+              return "Persona eliminada";
+            
+            
 
         } catch (Exception e) {
-            return  "No se encontró el usuario";
+            return  "No se encontró la persona";
         }
 
     }

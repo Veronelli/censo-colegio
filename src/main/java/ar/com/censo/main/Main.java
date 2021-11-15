@@ -4,6 +4,7 @@ import ar.com.censo.dominio.Persona;
 import javax.swing.*;
 import ar.com.censo.servicios.Servicio;
 import java.util.Scanner;
+import java.util.*;
 import javax.swing.JOptionPane;
 
 public class Main {
@@ -31,14 +32,12 @@ public class Main {
         while(opcion != 0){
             opcion = MostrarOpciones(opcion); 
             switch (opcion){
-                 case 1:
-                    
-                    
+                 case 1:             
+                 try{       
                     String nombre = JOptionPane.showInputDialog("Ingrese el nombre de la persona (Entre 1 y 10 caracteres):");
                     do{
                       
                       if(nombre.length()>10 || nombre.length()<1){
-
                         nombre = JOptionPane.showInputDialog("Ingrese un nombre válido (Entre 1 y 10 caracteres)");
 
                       }
@@ -85,41 +84,36 @@ public class Main {
 
                     }while(nacimiento < 1900 || nacimiento > 2020);
                     servicio.agregarPersona(nombre,apellido,edad,nacimiento);
+                    }
+                    catch(Exception e){}
                     break;
                 case 2:
+                try{
                     id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID de la persona:"));
                     JOptionPane.showMessageDialog(null,servicio.eliminarPersona(id));
+                }catch(Exception e){
+
+                }
                     break;
                 case 3:
+                try{
                     id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID de la persona:"));
                         
                     try{
                       Persona persona = servicio.getPersona(id);
-                      JOptionPane.showMessageDialog(null,imprimirPersona(servicio, persona));
-                    
+                      List<Persona> personas = new ArrayList();
+                      personas.add(persona);
+                      mostrarTabla(personas);
 
-                    }catch(NullPointerException e){
-                        JOptionPane.showMessageDialog(null,"No se encontro el usuario");
+                      }catch(NullPointerException e){
+                        JOptionPane.showMessageDialog(null,"No se encontro la persona");
                     }
-
+                  }catch(Exception e){}
                     break;
                case 4:
                if(servicio.getPersonas().size()>0){
-                Object [][] rows = new Object [servicio.getPersonas().size()][5];
-                Object[] cols = {"Id","Nombre","Apellido","edad","nacimiento"};
-                
-
-                for(int i = 0; i < servicio.getPersonas().size(); i++){
-                    int e = i;
-                System.out.println(i);
-                rows[i][0] = servicio.getPersonas().get(e).getId();
-                rows[i][1] = servicio.getPersonas().get(e).getNombre();
-                rows[i][2] = servicio.getPersonas().get(e).getApellido();
-                rows[i][3] = servicio.getPersonas().get(e).getEdad();
-                rows[i][4] = servicio.getPersonas().get(e).getNacimiento();
-                }
-                JTable table = new JTable(rows,cols);
-                JOptionPane.showMessageDialog(null, new JScrollPane(table));
+                List<Persona> personas = servicio.getPersonas();
+                mostrarTabla(personas);
                }else{
                  JOptionPane.showMessageDialog(null, "No hay personas registradas",
       "Hey!", JOptionPane.ERROR_MESSAGE);
@@ -144,11 +138,28 @@ public static String imprimirPersona(Servicio servicio,Persona persona){
 }
 public static int MostrarOpciones(int opcion){
       opcion = JOptionPane.showOptionDialog( null,"Seleccione una opcion",
-        "Selector de opciones",JOptionPane.YES_NO_CANCEL_OPTION,
+        "Censo",JOptionPane.YES_NO_CANCEL_OPTION,
         JOptionPane.QUESTION_MESSAGE,null,// null para icono por defecto.
         new Object[] { "Agregar", "Eliminar", "Buscar", "Mostrar Lista"},"opcion 1");
 
         return opcion += 1;
     }
+public static void mostrarTabla(List<Persona> personas){
+                  Object [][] rows = new Object [personas.size()][5];
+                Object[] cols = {"Id","Nombre","Apellido","edad","nacimiento"};
+                
 
+                for(int i = 0; i < personas.size(); i++){
+                    int e = i;
+                System.out.println(i);
+                rows[i][0] =  personas.get(e).getId();
+                rows[i][1] =  personas.get(e).getNombre();
+                rows[i][2] =  personas.get(e).getApellido();
+                rows[i][3] =  personas.get(e).getEdad();
+                rows[i][4] =  personas.get(e).getNacimiento();
+                }
+                JTable table = new JTable(rows,cols);
+                JOptionPane.showMessageDialog(null, new JScrollPane(table));
+
+}
 }
