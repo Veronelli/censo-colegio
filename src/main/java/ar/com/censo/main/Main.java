@@ -103,7 +103,7 @@ public class Main {
                       Persona persona = servicio.getPersona(id);
                       List<Persona> personas = new ArrayList();
                       personas.add(persona);
-                      mostrarTabla(personas);
+                      mostrarTabla(personas,servicio);
 
                       }catch(NullPointerException e){
                         JOptionPane.showMessageDialog(null,"No se encontro la persona");
@@ -113,7 +113,7 @@ public class Main {
                case 4:
                if(servicio.getPersonas().size()>0){
                 List<Persona> personas = servicio.getPersonas();
-                mostrarTabla(personas);
+                mostrarTabla(personas,servicio);
                }else{
                  JOptionPane.showMessageDialog(null, "No hay personas registradas",
       "Hey!", JOptionPane.ERROR_MESSAGE);
@@ -128,14 +128,6 @@ public class Main {
     
     
 }
-public static String imprimirPersona(Servicio servicio,Persona persona){
-  Integer _decada = servicio.decada(persona.getNacimiento());
-                        String _nombreCompleto = servicio.nombreCompleto(persona.getNombre(),persona.getApellido());
-                        String esMayor = (servicio.esMayor(persona.getEdad())) ? "Si" : "No";
-                        
-                        return "ID: "+ persona.getId()+"|" +"Nombre Completo:  "+ _nombreCompleto + "|"+"Edad:  " + persona.getEdad() +"|"+"Decada:  " + _decada + "|" +"Mayor:  "+ esMayor;
-
-}
 public static int MostrarOpciones(int opcion){
       opcion = JOptionPane.showOptionDialog( null,"Seleccione una opcion",
         "Censo",JOptionPane.YES_NO_CANCEL_OPTION,
@@ -144,9 +136,9 @@ public static int MostrarOpciones(int opcion){
 
         return opcion += 1;
     }
-public static void mostrarTabla(List<Persona> personas){
-                  Object [][] rows = new Object [personas.size()][5];
-                Object[] cols = {"Id","Nombre","Apellido","edad","nacimiento"};
+public static void mostrarTabla(List<Persona> personas,Servicio servicio){
+                  Object [][] rows = new Object [personas.size()][6];
+                Object[] cols = {"Id","Nombre","Apellido","Edad","Decada","Mayor"};
                 
 
                 for(int i = 0; i < personas.size(); i++){
@@ -156,7 +148,8 @@ public static void mostrarTabla(List<Persona> personas){
                 rows[i][1] =  personas.get(e).getNombre();
                 rows[i][2] =  personas.get(e).getApellido();
                 rows[i][3] =  personas.get(e).getEdad();
-                rows[i][4] =  personas.get(e).getNacimiento();
+                rows[i][4] =  servicio.decada(personas.get(e).getNacimiento());
+                rows[i][5] = (personas.get(e).getEdad()>=18) ? "Si" : "No";
                 }
                 JTable table = new JTable(rows,cols);
                 JOptionPane.showMessageDialog(null, new JScrollPane(table));
